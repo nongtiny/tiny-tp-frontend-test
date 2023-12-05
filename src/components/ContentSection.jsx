@@ -201,9 +201,18 @@ export function ContentSection(props) {
                   </ul>
                 </div>
                 <div className="glide__bullets" data-glide-el="controls[nav]">
-                  <button className="glide__bullet" data-glide-dir="=0"></button>
-                  <button className="glide__bullet" data-glide-dir="=1"></button>
-                  <button className="glide__bullet" data-glide-dir="=2"></button>
+                  {
+                    items.map((item, index) =>
+                      <button
+                        key={`glide__bullet${index}`}
+                        className="glide__bullet"
+                        role="button"
+                        aria-label={`slider_bullet_${index}`}
+                        aria-labelledby={`glider_bullet_${index}`}
+                        data-glide-dir={`=${index}`}
+                      />
+                    )
+                  }
                 </div>
               </div>
             </div>
