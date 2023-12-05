@@ -20,7 +20,6 @@ const contentCustomStyleVars = {
   '--span-content-columns-md': `span ${contentAreaControl.md.contentColumnSpan} / span ${contentAreaControl.md.contentColumnSpan}`,
   '--span-base-content-columns-lg': `span ${contentAreaControl.lg.baseGridColumn} / span ${contentAreaControl.lg.baseGridColumn}`,
   '--span-content-columns-lg': `span ${contentAreaControl.lg.contentColumnSpan} / span ${contentAreaControl.lg.contentColumnSpan}`,
-
   '--start-content-column-md': contentAreaControl.md.contentColumnStart,
   '--start-content-column-lg': contentAreaControl.lg.contentColumnStart,
 };
@@ -40,7 +39,6 @@ export function ContentSection(props) {
   const glider = useRef();
   const glideElement = useRef();
   const isMouseIn = useRef(false);
-
   const mousePosition = useRef({
     x: 0,
     y: 0
@@ -49,6 +47,17 @@ export function ContentSection(props) {
   useAnimationFrame(() => {
     handleMouseHoverImage();
   });
+
+  const plusDisplayCustomStyle = useMemo(() => ({
+    '--plus-display-sm': plusDisplayConfig.sm ? 'block' : 'none',
+    '--plus-display-md': plusDisplayConfig.md ? 'block' : 'none',
+    '--plus-display-lg': plusDisplayConfig.lg ? 'block' : 'none',
+  }), [plusDisplayConfig]);
+  const lineDisplayCustomStyle = useMemo(() => ({
+    '--line-display-sm': lineDisplayConfig.sm ? 'block' : 'none',
+    '--line-display-md': lineDisplayConfig.md ? 'block' : 'none',
+    '--line-display-lg': lineDisplayConfig.lg ? 'block' : 'none',
+  }), [lineDisplayConfig]);
 
   const handleOnGliderRun = useCallback(() => {
     const spinRightTimeLine = gsap.timeline({
@@ -59,7 +68,6 @@ export function ContentSection(props) {
     spinRightTimeLine.to(imageRef.current, { scaleX: '1', ease: 'sine.inOut' });
     spinRightTimeLine.play();
   }, [imageRef]);
-
   const onMouseMove = useCallback((e) => {
     if (isMouseIn.current && imageRef.current) {
       mousePosition.current = {
@@ -68,18 +76,6 @@ export function ContentSection(props) {
       };
     }
   }, [imageRef]);
-
-  const plusDisplayCustomStyle = useMemo(() => ({
-    '--plus-display-sm': plusDisplayConfig.sm ? 'block' : 'none',
-    '--plus-display-md': plusDisplayConfig.md ? 'block' : 'none',
-    '--plus-display-lg': plusDisplayConfig.lg ? 'block' : 'none',
-  }), [plusDisplayConfig]);
-
-  const lineDisplayCustomStyle = useMemo(() => ({
-    '--line-display-sm': lineDisplayConfig.sm ? 'block' : 'none',
-    '--line-display-md': lineDisplayConfig.md ? 'block' : 'none',
-    '--line-display-lg': lineDisplayConfig.lg ? 'block' : 'none',
-  }), [lineDisplayConfig]);
 
   useEffect(() => {
     if (!isMobile) {
@@ -115,15 +111,14 @@ export function ContentSection(props) {
   function onMouseHover() {
     isMouseIn.current = true;
   }
-
   function onMouseOut() {
     isMouseIn.current = false;
   }
-
   function handleMouseHoverImage() {
     if (isMobile) {
       return;
     }
+
     if (isMouseIn.current) {
       gsap.to(imageRef.current, { x: mousePosition.current.y * 0.05, y: -mousePosition.current.x * 0.01});
       if (document.querySelector('.plus-group')) {
@@ -137,27 +132,40 @@ export function ContentSection(props) {
     }
   }
 
-  return <section className="group content-section relative pt-[20px] md:pt-[50px] lg:pt-[100px]">
+  return <section
+    className={
+      "group content-section relative pt-[20px]"
+      + " md:pt-[50px]"
+      + " lg:pt-[100px]"
+    }
+  >
     {
       isMobile
         ? <div className="base-container">
-          <h3 className="text-[#E7E7E7] text-[50px] leading-[58.59px] md:text-[90px] md:leading-[105.47px]">
+          <h3
+            className={
+              "text-[#E7E7E7] text-[50px] leading-[58.59px]"
+              + " md:text-[90px] md:leading-[105.47px]"
+            }
+          >
             { headerText.toUpperCase() }
           </h3>
         </div>
         : <></>
     }
     <div
-      className="grid grid-cols-1 md:grid-cols-columns-base-content-md lg:grid-cols-columns-base-content-lg items-center md:items-start"
+      className={
+        "grid grid-cols-1 items-center"
+        + " md:grid-cols-columns-base-content-md md:items-start"
+        + " lg:grid-cols-columns-base-content-lg"
+      }
       style={{
         ...contentCustomStyleVars,
         ...plusDisplayCustomStyle,
         ...lineDisplayCustomStyle
       }}
     >
-      <div
-        className={imageWrapperClass}
-      >
+      <div className={imageWrapperClass}>
         <div
           onMouseOver={onMouseHover}
           onMouseLeave={onMouseOut}
@@ -170,20 +178,26 @@ export function ContentSection(props) {
         isMobile
           ? <div className="pt-[60px] pb-[25px] bg-[#F5F4F9] mt-[-26px]">
             <div className="base-container">
-              <div ref={glideElement} className="glide">
-                <div className="glide__track" data-glide-el="track">
+              <div
+                ref={glideElement}
+                className="glide"
+              >
+                <div
+                  className="glide__track"
+                  data-glide-el="track"
+                >
                   <ul className="glide__slides pb-[30px]">
                     {
                       items.map((item, index) =>
                         <li
-                          key={'athelete'+index}
+                          key={'sectionMobileSlideItem' + index}
                           className="w-full glide__slide"
                         >
                           <p className="relative flex items-center gap-[10px]">
                             <span
                               className={
                                 "inline-block relative top-[-3px] text-[14px]"
-                                +" before:absolute before:bottom-[-2px] before:w-full before:h-[4px] before:rounded-full before:bg-[#603EBE]"
+                                + " before:absolute before:bottom-[-2px] before:w-full before:h-[4px] before:rounded-full before:bg-[#603EBE]"
                               }
                             >
                               { `0${index + 1}`}
@@ -200,16 +214,19 @@ export function ContentSection(props) {
                     }
                   </ul>
                 </div>
-                <div className="glide__bullets" data-glide-el="controls[nav]">
+                <div
+                  className="glide__bullets"
+                  data-glide-el="controls[nav]"
+                >
                   {
                     items.map((item, index) =>
                       <button
                         key={`glide__bullet${index}`}
-                        className="glide__bullet"
-                        role="button"
                         aria-label={`slider_bullet_${index}`}
                         aria-labelledby={`glider_bullet_${index}`}
                         data-glide-dir={`=${index}`}
+                        className="glide__bullet"
+                        role="button"
                       />
                     )
                   }
@@ -217,28 +234,62 @@ export function ContentSection(props) {
               </div>
             </div>
           </div>
-          : <div className="col-span-base-content-columns-md lg:col-span-base-content-columns-lg">
+          : <div
+            className={
+              "col-span-base-content-columns-md"
+              + " lg:col-span-base-content-columns-lg"
+            }
+          >
             <div className="base-container">
-              <div className="grid md:grid-cols-columns-base-content-md lg:grid-cols-columns-base-content-lg">
-                <div className="group-[.content-section:nth-child(even)]:col-start-1 col-start-content-column-md lg:col-start-content-column-lg col-span-content-columns-md lg:col-span-content-columns-lg">
+              <div
+                className={
+                  "grid grid-cols-columns-base-content-md"
+                  + " lg:grid-cols-columns-base-content-lg"
+                }
+              >
+                <div
+                  className={
+                    "group-[.content-section:nth-child(even)]:col-start-1 col-start-content-column-md col-span-content-columns-md"
+                    + " lg:col-start-content-column-lg lg:col-span-content-columns-lg"
+                  }
+                >
                   <h3 className="text-[#E7E7E7] text-[90px] leading-[105.47px]">
                     { headerText.toUpperCase() }
                   </h3>
                 </div>
               </div>
             </div>
-            <ul className="mt-[15px] lg:mt-[10px]">
+
+            <ul
+              className={
+                "mt-[15px]"
+                + " lg:mt-[10px]"
+              }
+            >
               {
                 items.map((item, index) =>
                   <li
                     key={'sectionItem'+index}
-                    className="w-full py-[20px] md:py-[30px] lg:py-[60px] group section-item"
+                    className={
+                      "w-full py-[30px] group section-item"
+                      + " lg:py-[60px]"
+                    }
                     style={{
                       backgroundColor: item.bgColor
                     }}
                   >
-                    <div className="base-container grid md:grid-cols-columns-base-content-md lg:grid-cols-columns-base-content-lg">
-                      <div className="group-[.content-section:nth-child(even)]:col-start-1 col-start-content-column-md lg:col-start-content-column-lg col-span-content-columns-md lg:col-span-content-columns-lg">
+                    <div
+                      className={
+                        "base-container grid grid-cols-columns-base-content-md"
+                        + " lg:grid-cols-columns-base-content-lg"
+                      }
+                    >
+                      <div
+                        className={
+                          "group-[.content-section:nth-child(even)]:col-start-1 col-start-content-column-md col-span-content-columns-md"
+                          + " lg:col-start-content-column-lg lg:col-span-content-columns-lg"
+                        }
+                      >
                         <p className="relative flex items-center gap-[10px]">
                           <span
                             className={
@@ -256,7 +307,12 @@ export function ContentSection(props) {
                             { item.title }
                           </span>
                         </p>
-                        <p className="text-[18px] mt-[20px] leading-[28px] group-[.section-item:last-child]:text-white">
+                        <p
+                          className={
+                            "text-[18px] mt-[20px] leading-[28px]"
+                            + " group-[.section-item:last-child]:text-white"
+                          }
+                        >
                           { item.description }
                         </p>
                       </div>
