@@ -10,7 +10,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import confetti from 'canvas-confetti';
 
 function Plus({ className }) {
-  return <img src={plusIcon} alt="plus-icon" className={"plus w-[15px] min-w-[15px] min-h-[15px] h-[15px] object-contain " + className} />;
+  return <img src={plusIcon} alt="plus-icon" width="15" height="15" className={"plus w-[15px] min-w-[15px] min-h-[15px] h-[15px] object-contain " + className} />;
 }
 function Line({ className }) {
   return <div className={"line " + className} />;
@@ -42,10 +42,9 @@ function App() {
     function handleLoaded() {
       gsap.fromTo('#althleteImgId', {
         x: '-100%',
-        ease: 'bounce.in',
       }, {
         x: 0,
-        ease: 'bounce.in'
+        ease: 'power3.in'
       }).then(() => {
         const scalar = 5;
         const ball = confetti.shapeFromText({ text: '🏈', scalar });
@@ -63,10 +62,9 @@ function App() {
         onToggle: (self) => {
           gsap.fromTo('#playerImgId', {
             x: '100%',
-            ease: 'bounce.in',
           }, {
             x: 0,
-            ease: 'bounce.in'
+            ease: 'power3.in'
           }).then(() => {
             const scalar = 5;
             const ball = confetti.shapeFromText({ text: '🏀', scalar });
@@ -112,15 +110,17 @@ function App() {
           <Plus className="absolute top-[20px] left-[10px]" />
         </div>
         <Line className="athelete-bg-line" />
-        <picture className="relative w-auto h-full z-10 transform -translate-x-full">
+        <picture
+          id="althleteImgId"
+          className="block relative w-auto h-full z-10"
+        >
           <img
-            id="althleteImgId"
             ref={atheleteImageRef}
             src={ATHLETES_PREVIEW_IMG}
-            className={
-              "relative w-auto h-full object-contain"
-            }
+            className="relative w-auto h-full object-contain"
             alt="AmericanFootballMen"
+            width="360"
+            height="640"
           />
         </picture>
       </ContentSection>
@@ -147,15 +147,17 @@ function App() {
         </div>
         <Line className="player-bg-line-1 text-[#936EEA]" />
         <Line className="player-bg-line-2 text-[#936EEA]" />
-        <picture className="relative w-auto h-full z-10 transform translate-x-full">
+        <picture
+          id="playerImgId"
+          className="block relative w-auto h-full z-10"
+        >
           <img
-            id="playerImgId"
             ref={playerImageRef}
             src={PLAYERS_PREVIEW_IMG}
-            className={
-              "relative w-auto h-full object-contain"
-            }
+            className="relative w-auto h-full object-contain transform translate-x-[200%]"
             alt="BasketballMen"
+            width="400"
+            height="640"
           />
         </picture>
       </ContentSection>
