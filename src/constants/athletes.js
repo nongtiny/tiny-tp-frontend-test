@@ -1,8 +1,6 @@
 
-import AmericanFootballImage from '../assets/american_football_men.webp';
-
 export const ATHLETES_HEADER_TEXT = 'ATHLETS';
-export const ATHLETES_PREVIEW_IMG = AmericanFootballImage;
+export const ATHLETES_PREVIEW_IMG = '/images/american_football_men.webp';
 export const ATHLETES_IMAGE_CONFIG = {
   sm: {
     lineBg: {

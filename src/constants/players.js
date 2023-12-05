@@ -1,7 +1,5 @@
-import BasketballImage from '../assets/basketball.webp';
-
 export const PLAYERS_HEADER_TEXT = 'PLAYERS';
-export const PLAYERS_PREVIEW_IMG = BasketballImage;
+export const PLAYERS_PREVIEW_IMG = '/images/basketball.webp';
 export const PLAYERS_PREVIEW_HEIGHT = '249px';
 export const PLAYERS_PLUS_DISPLAY_CONFIG = {
   sm: true,

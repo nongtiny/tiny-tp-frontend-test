@@ -3,8 +3,15 @@ import ReactDOM from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 
+
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <>
+      <section id="loading-screen">
+        <div id="loader"></div>
+      </section>
+      <App />
+    </>
   </React.StrictMode>,
 );

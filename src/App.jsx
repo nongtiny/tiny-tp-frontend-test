@@ -40,6 +40,13 @@ function App() {
     handleWindowResize();
 
     function handleLoaded() {
+      const loadingScreen = document.getElementById('loading-screen');
+      function onTransitionEnd( event ) {
+        event.target.remove();
+      }
+      loadingScreen.classList.add('fade-out');
+      loadingScreen.addEventListener('transitionend', onTransitionEnd );
+
       gsap.fromTo('#althleteImgId', {
         x: '-100%',
       }, {
@@ -79,7 +86,6 @@ function App() {
           self.disable();
         },
       });
-      // Perform actions after the component has fully loaded
     }
     window.addEventListener('load', handleLoaded);
     return () => {
@@ -112,7 +118,7 @@ function App() {
         <Line className="athelete-bg-line" />
         <picture
           id="althleteImgId"
-          className="block relative w-auto h-full z-10"
+          className="block relative w-auto h-full z-10 transform -translate-x-full"
         >
           <img
             ref={atheleteImageRef}
@@ -149,12 +155,12 @@ function App() {
         <Line className="player-bg-line-2 text-[#936EEA]" />
         <picture
           id="playerImgId"
-          className="block relative w-auto h-full z-10"
+          className="block relative w-auto h-full z-10 transform translate-x-[200%]"
         >
           <img
             ref={playerImageRef}
             src={PLAYERS_PREVIEW_IMG}
-            className="relative w-auto h-full object-contain transform translate-x-[200%]"
+            className="relative w-auto h-full object-contain"
             alt="BasketballMen"
             width="400"
             height="640"
