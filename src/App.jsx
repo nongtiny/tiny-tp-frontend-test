@@ -39,13 +39,11 @@ function App({ animated }) {
 
     function handleLoaded() {
       const loadingScreen = document.getElementById('loading-screen');
-      function onTransitionEnd( event ) {
-        event.target.remove();
-      }
-      console.log('loadingScreen', loadingScreen);
       if (loadingScreen) {
         loadingScreen.classList.add('fade-out');
-        loadingScreen.addEventListener('transitionend', onTransitionEnd );
+        setTimeout(() => {
+          loadingScreen.remove();
+        }, 1500);
       }
       if (!animated) {
         return;
@@ -104,10 +102,9 @@ function App({ animated }) {
     if (!animated) {
       handleWindowResize();
       window.addEventListener('resize', handleWindowResize);
-      window.addEventListener('load', handleLoaded);
+      handleLoaded();
       return () => {
         window.removeEventListener('resize', handleWindowResize);
-        window.removeEventListener('load', handleLoaded);
       };
     }
 
@@ -115,10 +112,9 @@ function App({ animated }) {
     initSmoothScroll();
     handleWindowResize();
     window.addEventListener('resize', handleWindowResize);
-    window.addEventListener('load', handleLoaded);
+    handleLoaded();
     return () => {
       window.removeEventListener('resize', handleWindowResize);
-      window.removeEventListener('load', handleLoaded);
     };
   }, [animated]);
 
