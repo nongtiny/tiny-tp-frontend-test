@@ -8,6 +8,7 @@ import plusIcon from './assets/plus.png';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import confetti from 'canvas-confetti';
+import Lenis from '@studio-freight/lenis';
 
 function Plus({ className }) {
   return <img src={plusIcon} alt="plus-icon" width="15" height="15" className={"plus w-[15px] min-w-[15px] min-h-[15px] h-[15px] object-contain " + className} />;
@@ -78,7 +79,7 @@ function App() {
 
       ScrollTrigger.create({
         trigger: "#playerImgId",
-        start: "center bottom",
+        start: "top bottom",
         onToggle: (self) => {
           gsap.fromTo(
             '#playerImgId',
@@ -106,6 +107,13 @@ function App() {
     }
     window.addEventListener('load', handleLoaded);
     //  ----- Wnd of Initial Loading Handler ------
+
+    const lenis = new Lenis();
+    function raf(time) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
 
     return () => {
       window.removeEventListener('resize', handleWindowResize);
