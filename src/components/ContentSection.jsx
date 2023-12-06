@@ -60,6 +60,10 @@ export function ContentSection(props) {
   }), [lineDisplayConfig]);
 
   const handleOnGliderRun = useCallback(() => {
+    if (!imageRef) {
+      return;
+    }
+
     const spinRightTimeLine = gsap.timeline({
       delay: 0
     });
@@ -69,7 +73,7 @@ export function ContentSection(props) {
     spinRightTimeLine.play();
   }, [imageRef]);
   const onMouseMove = useCallback((e) => {
-    if (isMouseIn.current && imageRef.current) {
+    if (isMouseIn.current && imageRef && imageRef.current) {
       mousePosition.current = {
         x: e.x,
         y: e.y
@@ -103,7 +107,7 @@ export function ContentSection(props) {
   }, [isMobile, glider, onMouseMove, handleOnGliderRun]);
 
   useEffect(() => {
-    if (imageRef.current) {
+    if (imageRef && imageRef.current) {
       document.body.addEventListener('mousemove', onMouseMove);
     }
   }, [imageRef, onMouseMove]);
@@ -115,7 +119,10 @@ export function ContentSection(props) {
     isMouseIn.current = false;
   }
   function handleMouseHoverImage() {
-    if (isMobile) {
+    if (!imageRef) {
+      return;
+    }
+    if (!imageRef.current || isMobile) {
       return;
     }
 
