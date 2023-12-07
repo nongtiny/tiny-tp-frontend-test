@@ -270,7 +270,8 @@ export function ContentSection(props) {
             <ul
               className={
                 "mt-[15px]"
-                + " lg:mt-[10px]"
+                + " md:mt-[45px]"
+                + " lg:mt-[70px]"
               }
             >
               {
@@ -278,8 +279,9 @@ export function ContentSection(props) {
                   <li
                     key={'sectionItem'+index}
                     className={
-                      "w-full py-[30px] group section-item"
-                      + " lg:py-[60px]"
+                      "w-full pt-[30px] pb-[30px] group section-item"
+                      + " md:first:pt-0"
+                      + " lg:pt-[60px] lg:pb-[60px]"
                     }
                     style={{
                       backgroundColor: item.bgColor

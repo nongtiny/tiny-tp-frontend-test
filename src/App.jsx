@@ -137,7 +137,7 @@ function App({ animated }) {
         imageRef={animated ? atheleteImageRef : null}
         imageWrapperClass={
           "relative justify-self-center mt-[15px] h-[281px]"
-            + " md:absolute md:h-[699px] md:left-[-148px] md:top-[64px]"
+            + " md:absolute md:h-[699px] md:left-[-168px] md:top-[74px]"
             + " lg:left-[10%] lg:top-[44px] lg:h-full lg:max-h-[950px] lg:w-[45%] lg:max-w-[672px]"
         }
         plusDisplayConfig={ATHLETES_PLUS_DISPLAY_CONFIG}
@@ -170,7 +170,7 @@ function App({ animated }) {
         isMobile={isMobile}
         imageWrapperClass={
           "relative justify-self-center mt-[15px] h-[235px]"
-            + " md:absolute md:right-[-259px] md:top-[10px] md:h-[568px]"
+            + " md:absolute md:right-[-240px] md:top-[27px] md:h-[530px]"
             + " lg:top-[-16px] lg:right-[10%] lg:h-full lg:max-h-[815px] lg:w-[61%] lg:max-w-[988px]"
         }
         plusDisplayConfig={PLAYERS_PLUS_DISPLAY_CONFIG}
@@ -178,7 +178,7 @@ function App({ animated }) {
       >
         <div className="plus-group player-plus-group-1">
           <Plus className="absolute top-[12px] left-[-10px]" />
-          <Plus className="absolute top-[20px] left-[10px]" />
+          <Plus className="absolute top-[20px] md:top-[25px] left-[10px]" />
         </div>
         <div className="plus-group player-plus-group-2">
           <Plus className="absolute top-0 left-0" />

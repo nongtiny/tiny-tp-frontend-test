@@ -1,7 +1,7 @@
 export const contentAreaControl = {
   md: {
-    baseGridColumn: 5,
-    contentColumnSpan: 3,
+    baseGridColumn: 6,
+    contentColumnSpan: 4,
     contentColumnStart: 3
   },
   lg: {

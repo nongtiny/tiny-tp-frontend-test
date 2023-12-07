@@ -89,13 +89,14 @@
   }
   .player-bg-line-1 {
     height: 5px;
+    width: 45%;
   }
   .player-bg-line-2 {
     height: 5px;
   }
   .player-plus-group-1 {
     position: absolute;
-    top: 120px;
+    top: 110px;
     left: calc(50% - 117px);
     transform: translateX(-50%) rotate(180deg);
   }
