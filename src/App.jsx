@@ -171,7 +171,7 @@ function App({ animated }) {
         imageWrapperClass={
           "relative justify-self-center mt-[15px] h-[235px]"
             + " md:absolute md:right-[-259px] md:top-[10px] md:h-[568px]"
-            + " lg:top-0 lg:right-[10%] lg:h-full lg:max-h-[815px] lg:w-[61%] lg:max-w-[988px]"
+            + " lg:top-[-16px] lg:right-[10%] lg:h-full lg:max-h-[815px] lg:w-[61%] lg:max-w-[988px]"
         }
         plusDisplayConfig={PLAYERS_PLUS_DISPLAY_CONFIG}
         lineDisplayConfig={PLAYERS_LINE_DISPLAY_CONFIG}
