@@ -84,6 +84,7 @@
   }
   .athelete-bg-line {
     height: 5px;
+    width: 128%;
     top: calc(50% - 96px);
     left: calc(50% - 68px);
   }
