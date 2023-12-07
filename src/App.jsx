@@ -138,7 +138,7 @@ function App({ animated }) {
         imageWrapperClass={
           "relative justify-self-center mt-[15px] h-[281px]"
             + " md:absolute md:h-[699px] md:left-[-148px] md:top-[64px]"
-            + " lg:left-[5%] lg:top-[44px] lg:h-full lg:max-h-[950px] lg:w-[45%] lg:max-w-[672px]"
+            + " lg:left-[10%] lg:top-[44px] lg:h-full lg:max-h-[950px] lg:w-[45%] lg:max-w-[672px]"
         }
         plusDisplayConfig={ATHLETES_PLUS_DISPLAY_CONFIG}
         lineDisplayConfig={ATHLETES_LINE_DISPLAY_CONFIG}
